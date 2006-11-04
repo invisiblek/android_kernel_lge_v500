@@ -1905,6 +1905,7 @@ void ndisc_late_cleanup(void)
 
 void ndisc_cleanup(void)
 {
+	unregister_netdevice_notifier(&ndisc_netdev_notifier);
 #ifdef CONFIG_SYSCTL
 	neigh_sysctl_unregister(&nd_tbl.parms);
 #endif
