@@ -4506,6 +4506,9 @@ static void mem_cgroup_usage_unregister_event(struct cgroup *cgrp,
 	if (!thresholds->primary)
 		goto unlock;
 
+	if (!thresholds->primary)
+		goto unlock;
+
 	usage = mem_cgroup_usage(memcg, type == _MEMSWAP);
 
 	/* Check if a threshold crossed before removing */
