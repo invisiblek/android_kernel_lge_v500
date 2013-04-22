@@ -326,7 +326,7 @@ static u32 ddl_set_dec_property(struct ddl_client_context *ddl,
 				decoder->adaptive_width = decoder->client_frame_size.width;
 				decoder->adaptive_height = decoder->client_frame_size.height;
 			}
-			DDL_MSG_LOW("set VCD_I_FRAME_SIZE width = %d"
+			DDL_MSG_HIGH("set VCD_I_FRAME_SIZE width = %d"
 				" height = %d\n",
 				frame_size->width, frame_size->height);
 			vcd_status = VCD_S_SUCCESS;
