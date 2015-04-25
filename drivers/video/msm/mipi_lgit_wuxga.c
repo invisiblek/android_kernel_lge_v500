@@ -39,7 +39,7 @@ static int is_color_engine_on = 1;
 struct msm_fb_data_type *local_mfd0 = NULL;
 int mipi_lgit_lcd_color_engine_off(void)
 {
-	if(local_mfd0!=NULL && local_mfd0->panel_power_on && is_color_engine_on) {
+	if(local_mfd0!=NULL && !mdp_fb_is_power_off(local_mfd0) && is_color_engine_on) {
 		printk("Color Engine_OFF Starts with Camera\n");
 		mutex_lock(&local_mfd0->dma->ov_mutex);
 
@@ -59,7 +59,7 @@ int mipi_lgit_lcd_color_engine_off(void)
 
 int mipi_lgit_lcd_color_engine_on(void)
 {
-	if(local_mfd0!=NULL && local_mfd0->panel_power_on && !is_color_engine_on) {
+	if(local_mfd0!=NULL && !mdp_fb_is_power_off(local_mfd0) && !is_color_engine_on) {
 		printk("Color Engine_ON Starts with Camera\n");
 		mutex_lock(&local_mfd0->dma->ov_mutex);
 
