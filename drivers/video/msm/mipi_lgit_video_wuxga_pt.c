@@ -26,32 +26,8 @@
 
 static struct msm_panel_info pinfo;
 
-#define DSI_BIT_CLK_900MHZ
-
-#if 0
-static struct mipi_dsi_phy_ctrl dsi_video_mode_phy_db_LD070WU1 = {
-	/* 1200*1920, RGB888, 4 Lane 60 fps video mode */
-#if defined(DSI_BIT_CLK_900MHZ)
-	/* regulator */
-	{0x03, 0x0a, 0x04, 0x00, 0x20},
-	/* timing */
-	{0xFA, 0x9B, 0x3B, 0x00, 0x44, 0xE4, 0x3e, 0x9d, 0x41, 0x03, 0x04},
-	/* phy ctrl */
-	{0x5f, 0x00, 0x00, 0x10},
-	/* strength */
-	{0xff, 0x00, 0x06, 0x00},
-	/* pll control */
-	{0x00, 0xC1, 0x01, 0x1A, 0x00, 0x50, 0x48, 0x63,
-	0x40, 0x07, 0x01, 0x00, 0x14, 0x03, 0x00, 0x02,
-	0x00, 0x20, 0x00, 0x01},
-#endif
-};
-#endif
-
-
 static struct mipi_dsi_phy_ctrl dsi_video_mode_phy_db_LD089WU1 = {
 	/* 1920*1200, RGB888, 4 Lane 60 fps video mode */
-#if defined(DSI_BIT_CLK_900MHZ)
 	/* regulator */
 	{0x03, 0x0a, 0x04, 0x00, 0x20},
 	/* timing */
@@ -64,12 +40,10 @@ static struct mipi_dsi_phy_ctrl dsi_video_mode_phy_db_LD089WU1 = {
 	{0x00, 0xBB, 0x01, 0x1A, 0x00, 0x50, 0x48, 0x63,
 	0x40, 0x07, 0x01, 0x00, 0x14, 0x03, 0x00, 0x02,
 	0x00, 0x20, 0x00, 0x01},
-#endif
 };
 
 static struct mipi_dsi_phy_ctrl dsi_video_mode_phy_db_LD083WU1 = {
 	/* 1200*1920, RGB888, 4 Lane 60 fps video mode */
-#if defined(DSI_BIT_CLK_900MHZ)
 	/* regulator */
 	{0x03, 0x0a, 0x04, 0x00, 0x20},
 	/* timing */
@@ -82,7 +56,6 @@ static struct mipi_dsi_phy_ctrl dsi_video_mode_phy_db_LD083WU1 = {
 	{0x00, 0xD1, 0x01, 0x1A, 0x00, 0x50, 0x48, 0x63,
 	0x40, 0x07, 0x01, 0x00, 0x14, 0x03, 0x00, 0x02,
 	0x00, 0x20, 0x00, 0x01},
-#endif
 };
 
 static int __init mipi_video_lgit_wuxga_pt_init(void)
@@ -106,13 +79,11 @@ static int __init mipi_video_lgit_wuxga_pt_init(void)
 		pinfo.lcdc.v_back_porch = 26;
 		pinfo.lcdc.v_front_porch = 3;
 
-#if defined(DSI_BIT_CLK_900MHZ)
 		pinfo.mipi.t_clk_post = 0x21;
 		pinfo.mipi.t_clk_pre = 0x4D;
 		pinfo.clk_rate = 889200000;
 
 		pinfo.mipi.dsi_phy_db = &dsi_video_mode_phy_db_LD089WU1;
-#endif
 	} else {
 		pinfo.xres = 1200;
 		pinfo.yres = 1920;
@@ -125,34 +96,12 @@ static int __init mipi_video_lgit_wuxga_pt_init(void)
 		pinfo.lcdc.v_back_porch = 10;
 		pinfo.lcdc.v_front_porch = 5;
 
-#if defined(DSI_BIT_CLK_900MHZ)
 		pinfo.mipi.t_clk_post = 0x20;
 		pinfo.mipi.t_clk_pre = 0x38;
 		pinfo.clk_rate = 933060000;
 
 		pinfo.mipi.dsi_phy_db = &dsi_video_mode_phy_db_LD083WU1;
-#endif
 	}
-
-/* For the LD070WU1 */
-#if 0
-	pinfo.xres = 1200;
-	pinfo.yres = 1920;
-
-	pinfo.lcdc.h_pulse_width = 32;
-	pinfo.lcdc.h_back_porch = 60;
-	pinfo.lcdc.h_front_porch = 48;
-
-	pinfo.lcdc.v_pulse_width = 5;
-	pinfo.lcdc.v_back_porch = 6;
-	pinfo.lcdc.v_front_porch = 3;
-
-#if defined(DSI_BIT_CLK_900MHZ)
-	pinfo.mipi.t_clk_post = 0x21;
-	pinfo.mipi.t_clk_pre = 0x51;
-	pinfo.clk_rate = 900300000;
-#endif
-#endif
 
 	pinfo.type = MIPI_VIDEO_PANEL;
 	pinfo.pdest = DISPLAY_1;
@@ -185,9 +134,7 @@ static int __init mipi_video_lgit_wuxga_pt_init(void)
 	pinfo.mipi.data_lane1 = TRUE;
 	pinfo.mipi.data_lane2 = TRUE;
 	pinfo.mipi.data_lane3 = TRUE;
-#if defined(DSI_BIT_CLK_900MHZ)
 	pinfo.mipi.frame_rate = 60;	
-#endif
 	pinfo.mipi.stream = 0;		/* dma_p */
 	pinfo.mipi.mdp_trigger = 0;        /* DSI_CMD_TRIGGER_SW */
 	pinfo.mipi.dma_trigger = DSI_CMD_TRIGGER_SW;
@@ -201,4 +148,3 @@ static int __init mipi_video_lgit_wuxga_pt_init(void)
 }
 
 module_init(mipi_video_lgit_wuxga_pt_init);
-
