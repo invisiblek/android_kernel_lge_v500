@@ -2299,9 +2299,9 @@ static void mxt_proc_t24_messages(struct mxt_data *data, u8 *message)
 #endif
 			wake_lock_timeout(&touch_wake_lock, msecs_to_jiffies(2000));
 			dev_err(&data->client->dev,"Knock On detected x[%3d] y[%3d] \n", x, y);
-			input_report_key(data->input_dev, KEY_POWER, true);
+			input_report_key(data->input_dev, KEY_WAKEUP, true);
 			input_sync(data->input_dev);
-			input_report_key(data->input_dev, KEY_POWER, false);
+			input_report_key(data->input_dev, KEY_WAKEUP, false);
 			input_sync(data->input_dev);
 #ifdef CONFIG_TOUCHSCREEN_LGE_LPWG
 		}
@@ -6014,7 +6014,7 @@ static int mxt_initialize_t9_input_device(struct mxt_data *data)
 	}
 #ifdef CONFIG_TOUCHSCREEN_ATMEL_KNOCK_ON
 
-	input_set_capability(input_dev, EV_KEY, KEY_POWER);
+	input_set_capability(input_dev, EV_KEY, KEY_WAKEUP);
 #endif
 	data->input_dev = input_dev;
 
