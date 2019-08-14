@@ -2459,15 +2459,12 @@ static struct msm_rpmrs_level msm_rpmrs_levels[] = {
 		415, 715, 340827, 475,
 	},
 
-#ifdef CONFIG_LGE_USE_STANDALONE_POWER_COLLAPSE
-	/* QCT original code */
 	{
 		MSM_PM_SLEEP_MODE_POWER_COLLAPSE_STANDALONE,
 		MSM_RPMRS_LIMITS(ON, ACTIVE, MAX, ACTIVE),
 		true,
 		1300, 228, 1200000, 2000,
 	},
-#endif
 
 	{
 		MSM_PM_SLEEP_MODE_POWER_COLLAPSE,
